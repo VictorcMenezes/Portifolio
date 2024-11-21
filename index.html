@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Victor Costa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            
+            <nav>
+                <ul>
+                    <li><a href="#about">Sobre Mim</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sobre Mim -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Victor Menezes</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="img/perfil.jpeg" alt="Foto de Victor" class="profile-pic">
+                </div>
+                <div class="about-text">
+                    <p>Sou desenvolvedor iniciante, apaixonado por tecnologia e sempre buscando aprender novas habilidades. Meu objetivo é contribuir com soluções criativas para projetos desafiadores!</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/victor-menezes-9a39862b7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/VictorcMenezes" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/victorcdmenezes/?utm_source=qr&igsh=MTVmNWxpMzl3M3ZtOQ%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                   
+                    <h3>Calculadora</h3>
+
+                    <p>Uma calculadora interativa feita com HTML, CSS e JavaScript.</p>
+                    <a href="https://673d2df5373e53aee27ad549--superb-cassata-6dd370.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/VictorcMenezes/Calculadora" class="btn" target="_blank">Código no GitHub</a>
+                    <div class="image">
+                        <img src="img/calculadora.png" alt="Projeto 1">
+                    </div>
+                </div>
+                <div class="project-card">
+                    
+                    <h3>Sistema de Cadastro de Usuário</h3>
+                    <p>Um sistema de cadastro de usuários básicos de CRUD (Criar, Ler, Atualizar e Deletar)</p>
+                    <a href="https://unrivaled-pothos-d6e7a8.netlify.app" class="btn" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/VictorcMenezes/Sistema-Cadastro-Usuario" class="btn" target="_blank">Código no GitHub</a>
+                    <div class="image">
+                        <img src="img/cadastroUsuario.png" alt="Projeto 2">
+                    </div>
+                </div>
+               
+                <div class="project-card">
+                    
+                    <h3>Lista de Tarefas</h3>
+                    <p>Um projeto simples de Lista de Tarefas (To-Do List) feito com HTML, CSS e JavaScript.</p>
+                    <a href="https://673dc3df8bbc946c935195c8--fastidious-haupia-6b7527.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/VictorcMenezes/To-Do-list-Completa" class="btn" target="_blank">Código no GitHub</a>
+                    <div class="image">
+                        <img src="img/minhasListaTarefas.png" alt="Projeto 3">
+                    </div>
+                
+                </div>
+                <div class="project-card">    
+                    <h3>Site Salão de Beleza</h3>
+                    <p>Site para uma cliente usando, CSS e JavaScript.</p>
+                    <a href="https://673e7eac8891d6aae508bde6--dulcet-kringle-f041c6.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
+                    <a href="https://github.com/VictorcMenezes/SalaoBeleza-HTML-CSS/" class="btn" target="_blank">Código no GitHub</a>
+                    <div class="image">
+                        <img src="img/salaoBeleza.png" alt="Projeto 4">
+                    </div>
+                </div>
+               <!-- <div class="project-card">
+                    <h3>Calculadora</h3>
+                    <p>Uma calculadora interativa feita com HTML, CSS e JavaScript.</p>
+                    <a href="#" class="btn" target="_blank">Ver Projeto</a>
+                    <a href="#" class="btn" target="_blank">Código no GitHub</a>
+                </div>-->
+                <!-- Adicione mais projetos aqui -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <p>HTML</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <p>CSS</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js-square"></i>
+                    <p>JavaScript</p>
+                </div>
+                <!-- Adicione mais habilidades aqui -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contato</h2>
+            <form id="contact-form" action="https://formspree.io/f/xyzypjoa" method="POST">
+                <input type="text" name="name" placeholder="Seu Nome" required>
+                <input type="email" name="email" placeholder="Seu E-mail" required>
+                <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+            <div id="form-message" style="display:none;"></div>
+        </div>
+    </section>
+    
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2024 Victor Costa. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

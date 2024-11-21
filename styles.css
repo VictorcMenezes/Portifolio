@@ -1,0 +1,338 @@
+/* Reset de estilo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: 'Inter', sans-serif; /* Fonte moderna e clean */
+    background-color: #0F0F0F; /* Fundo escuro */
+    color: #fff;
+    line-height: 1.6;
+    padding-top: 80px; /* Espaçamento para o cabeçalho fixo */
+}
+
+/* Cabeçalho */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
+    color: white;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #00b4cc; /* Cor vibrante para os links */
+}
+
+/* Seções */
+section {
+    padding: 120px 0; /* Ajuste para garantir que o cabeçalho fixo não cubra as seções */
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.8rem;
+    color: #00b4cc; /* Cor vibrante */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Sobre mim */
+#about {
+    background-color: #212121; /* Fundo da seção */
+    padding: 80px 20px;
+    position: relative; /* Necessário para usar o position absoluto no texto */
+}
+
+#about h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+#about .about-content {
+    display: flex;
+    justify-content: flex-start;  /* Mantenha a foto à esquerda */
+    align-items: center;
+    gap: 20px;
+    position: relative; /* Necessário para o parágrafo ser centralizado em relação à tela */
+}
+
+#about .about-image {
+    flex: 1; /* Controla a largura da imagem */
+    max-width: 200px;
+    margin-left: 50px; /* Adiciona um espaço à esquerda da imagem */
+}
+
+#about .profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00b4cc;
+}
+
+#about .about-text {
+    color: white;        /* Cor do texto */
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-weight: 500;
+    max-width: 1000px;    /* Limita a largura do texto */
+    position: absolute;  /* Coloca o parágrafo fora do fluxo normal do layout */
+    top: 50%;            /* Posiciona o parágrafo na metade vertical da tela */
+    left: 50%;           /* Posiciona o parágrafo na metade horizontal da tela */
+    transform: translate(-50%, -50%);  /* Ajusta o centro exato */
+    text-align: center;  /* Garante que o texto fique centralizado */
+}
+
+#about .social-links {
+    margin-top: 20px;  /* Distância entre o texto e os links sociais */
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+#about .social-links a {
+    font-size: 3rem; /* Aumenta o tamanho dos ícones sociais */
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+#about .social-links a:hover {
+    color: #00b4cc;
+    transform: scale(1.5); /* Efeito de aumentar a imagem quando o mouse passa por cima */
+}
+
+/* Projetos */
+#projects {
+    background-color: #121212; /* Fundo escuro e clean */
+    padding: 80px 20px;
+    
+}
+
+#projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: space-between; /* Centraliza os cards horizontalmente */
+}
+
+.project-card {
+    background-color: #212121;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Flexbox para distribuir os itens */
+    min-height: 400px; /* Altura mínima dos cards */
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.project-card img {
+    width: 100%;  /* Garante que a imagem ocupe toda a largura do card */
+    height: 180px; /* Altura fixa da imagem */
+    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+    border-radius: 8px;
+    margin-top: 10px; /* Espaço entre a imagem e o conteúdo acima */
+    margin-bottom: 20px; /* Espaço entre a imagem e o conteúdo abaixo */
+    transition: transform 0.3s ease; /* Transição suave para o efeito de hover */
+}
+
+.project-card img:hover {
+    transform: scale(1.1); /* Efeito de aumentar a imagem quando o mouse passa por cima */
+}
+
+.project-card h3 {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-top: 15px;
+    margin-bottom: 10px; /* Espaçamento entre título e descrição */
+}
+
+.project-card p {
+    color: #bbb;
+    margin-bottom: 20px; /* Espaçamento entre parágrafo e botão */
+    flex-grow: 1; /* Expande para preencher o espaço restante */
+}
+
+.project-card .btn {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #00b4cc;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Alinha o botão horizontalmente ao centro */
+    margin-top: 10px; /* Garante que o botão vá para o final do card */
+}
+
+.project-card .btn:hover {
+    background-color: #00dffc;
+}
+
+
+
+/* Habilidades */
+#skills {
+    padding: 80px 20px;
+    background-color: #212121;
+}
+
+#skills .skills-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.skill {
+    text-align: center;
+    background-color: #303030;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.skill i {
+    font-size: 3rem;
+    color: #00b4cc;
+}
+
+.skill p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Seção Contato */
+#contact {
+    padding: 80px 20px;
+    background-color: #121212;
+}
+
+#contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contact input,
+#contact textarea {
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+#contact button {
+    background-color: #00b4cc;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+#contact button:hover {
+    background-color: #e55300;
+}
+
+#form-message {
+    margin-top: 20px;
+}
+
+/* Mensagens de sucesso ou erro */
+#form-message p {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+    text-align: center;
+}
+
+#form-message .success {
+    color: #28a745;
+    background-color: #e0f9e0;
+    border: 1px solid #28a745;
+}
+
+#form-message .error {
+    color: #e74c3c;
+    background-color: #f9e0e0;
+    border: 1px solid #e74c3c;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #212121;
+    color: white;
+    margin-top: 60px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    #about .about-content {
+        flex-direction: column; /* Empilha os itens verticalmente em telas pequenas */
+        text-align: center;     /* Alinha os itens ao centro */
+    }
+
+    #about .social-links {
+        margin-top: 20px; /* Mantém o espaço entre o parágrafo e os links sociais */
+    }
+}
