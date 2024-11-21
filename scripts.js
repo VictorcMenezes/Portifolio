@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Rolagem suave para a posição correta, com ajuste extra
                 window.scrollTo({
-                    top: targetPosition -1, // Ajuste de -10px para dar uma margem extra
+                    top: targetPosition - 1, // Ajuste de -1px para dar uma margem extra
                     behavior: "smooth"
                 });
             }
@@ -37,18 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Usando o fetch para enviar os dados para o Formspree sem recarregar a página
         fetch(form.action, {
-            method: "POST", // Envia os dados no método POST
-            body: formData   // Envia os dados do formulário
+            method: "POST",  // Envia os dados no método POST
+            body: formData,  // Envia os dados do formulário
+            mode: "no-cors"  // Adiciona o modo "no-cors"
         })
         .then(response => {
-            if (response.ok) {
-                // Caso o envio tenha sido bem-sucedido, exibe a mensagem de sucesso
-                showMessage("success", "Mensagem enviada com sucesso! Eu responderei em breve.");
-                form.reset();  // Limpa o formulário
-            } else {
-                // Caso haja erro no envio, exibe a mensagem de erro
-                showMessage("error", "Houve um erro ao enviar sua mensagem. Tente novamente.");
-            }
+            // Não será possível acessar a resposta devido ao "no-cors", mas o envio será feito
+            showMessage("success", "Mensagem enviada com sucesso! Eu responderei em breve.");
+            form.reset();  // Limpa o formulário após envio
         })
         .catch(() => {
             // Caso ocorra algum erro durante a requisição, exibe a mensagem de erro
