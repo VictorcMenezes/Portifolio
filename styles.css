@@ -81,16 +81,15 @@ h2 {
 
 #about .about-content {
     display: flex;
-    justify-content: flex-start;  /* Mantenha a foto à esquerda */
+    flex-direction: row; /* Padrão para desktops: foto à esquerda e texto ao lado */
+    justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    position: relative; /* Necessário para o parágrafo ser centralizado em relação à tela */
 }
 
 #about .about-image {
-    flex: 1; /* Controla a largura da imagem */
-    max-width: 200px;
-    margin-left: 50px; /* Adiciona um espaço à esquerda da imagem */
+    flex: 1;
+    max-width: 200px; /* Limita o tamanho da imagem */
 }
 
 #about .profile-pic {
@@ -102,35 +101,34 @@ h2 {
 }
 
 #about .about-text {
-    color: white;        /* Cor do texto */
+    color: white;
     font-size: 1.4rem;
     line-height: 1.8;
     font-weight: 500;
-    max-width: 1000px;    /* Limita a largura do texto */
-    position: absolute;  /* Coloca o parágrafo fora do fluxo normal do layout */
-    top: 50%;            /* Posiciona o parágrafo na metade vertical da tela */
-    left: 50%;           /* Posiciona o parágrafo na metade horizontal da tela */
-    transform: translate(-50%, -50%);  /* Ajusta o centro exato */
-    text-align: center;  /* Garante que o texto fique centralizado */
+    max-width: 600px; /* Define a largura máxima do texto */
+    text-align: center;
+    margin: 0 auto; /* Centraliza o texto no espaço disponível */
 }
 
 #about .social-links {
-    margin-top: 20px;  /* Distância entre o texto e os links sociais */
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 40px;
 }
 
+/* Ícones de redes sociais */
 #about .social-links a {
-    font-size: 3rem; /* Aumenta o tamanho dos ícones sociais */
+    font-size: 3rem;
     color: #fff;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 #about .social-links a:hover {
     color: #00b4cc;
-    transform: scale(1.5); /* Efeito de aumentar a imagem quando o mouse passa por cima */
+    transform: scale(1.2); /* Leve aumento no hover */
 }
+
 
 /* Projetos */
 #projects {
@@ -325,14 +323,25 @@ footer p {
     font-size: 1rem;
 }
 
-/* Media Queries para responsividade */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
     #about .about-content {
-        flex-direction: column; /* Empilha os itens verticalmente em telas pequenas */
-        text-align: center;     /* Alinha os itens ao centro */
+        flex-direction: column; /* Reorganiza os elementos em coluna */
+        align-items: center;
+        text-align: center;
+    }
+
+    #about .profile-pic {
+        width: 200px; /* Ajusta o tamanho da foto */
+        height: 200px;
+    }
+
+    #about .about-text {
+        font-size: 1.2rem; /* Reduz o tamanho do texto */
+        margin: 20px 0; /* Adiciona espaçamento entre os elementos */
     }
 
     #about .social-links {
-        margin-top: 20px; /* Mantém o espaço entre o parágrafo e os links sociais */
+        margin-top: 20px; /* Garante espaçamento suficiente */
     }
 }
