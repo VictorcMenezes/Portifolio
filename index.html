@@ -1,150 +1,895 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Victor Costa</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor Menezes — Desenvolvedor FullStack</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #18181f;
+    --card: #1c1c25;
+    --accent: #4ade80;
+    --accent2: #22d3ee;
+    --accent3: #f472b6;
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(74,222,128,0.3);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 70%);
+    top: 10%; left: -10%;
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%);
+    bottom: 10%; right: -5%;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-role {
+    font-family: var(--mono);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .hero-role .highlight { color: var(--accent2); }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--accent);
+    color: #0a0a0f;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { }
+  .stat-num {
+    font-size: 2rem; font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-header {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-size: 2.5rem; font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+  .skill-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .skill-card.java::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .skill-card.spring::before { background: linear-gradient(90deg, #4ade80, #22c55e); }
+  .skill-card.front::before { background: linear-gradient(90deg, #f59e0b, #eab308); }
+  .skill-card.db::before { background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+  .skill-card.tools::before { background: linear-gradient(90deg, #a78bfa, #8b5cf6); }
+
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .skill-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .project-accent {
+    height: 4px;
+    background: var(--accent);
+  }
+  .project-card.featured .project-accent { width: 4px; height: auto; }
+  .project-body { padding: 2rem; flex: 1; }
+  .project-type {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .project-name {
+    font-size: 1.4rem; font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .project-links { display: flex; gap: 1rem; }
+  .link-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .link-btn:hover { color: var(--accent); }
+  .link-btn .arrow { font-size: 14px; }
+
+  .project-highlights {
+    padding: 2rem 0 2rem 2rem;
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 240px;
+  }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .highlight-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  .about-text strong { color: var(--text); }
+  .about-status {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .status-text strong { color: var(--accent); }
+
+  .journey {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .journey-item {
+    display: flex; gap: 1.5rem;
+    padding-bottom: 2rem;
+    position: relative;
+  }
+  .journey-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 16px;
+    width: 1px; height: calc(100% - 8px);
+    background: var(--border);
+  }
+  .journey-dot {
+    width: 16px; height: 16px;
+    border: 2px solid var(--accent);
+    background: var(--bg2);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .journey-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+  .journey-event { font-size: 0.95rem; font-weight: 600; }
+  .journey-detail { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .contact-info h3 {
+    font-size: 2rem; font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .contact-info p { color: var(--muted); margin-bottom: 2rem; line-height: 1.8; }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: var(--border-accent); transform: translateX(4px); }
+  .contact-link-icon {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    width: 20px;
+    text-align: center;
+  }
+  .contact-link-info { flex: 1; }
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .contact-link-value { font-size: 0.95rem; margin-top: 0.1rem; }
+  .contact-cta {
+    text-align: center;
+    padding: 3rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .contact-cta p {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .contact-cta .email {
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--accent);
+    word-break: break-all;
+    margin-bottom: 2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  footer span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .project-card.featured { flex-direction: column; }
+    .project-highlights { border-left: none; border-top: 1px solid var(--border); padding: 2rem; min-width: 0; }
+    footer { padding: 1.5rem; }
+  }
+</style>
 </head>
-
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <div class="container">
-            
-            <nav>
-                <ul>
-                    <li><a href="#about">Sobre Mim</a></li>
-                    <li><a href="#projects">Projetos</a></li>
-                    <li><a href="#skills">Habilidades</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-            </nav>
+
+<nav>
+  <div class="nav-logo">VM.dev</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projetos</a></li>
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag fade-up">Desenvolvedor FullStack</div>
+    <h1 class="hero-name fade-up delay-1">Victor<br><span>Menezes</span></h1>
+    <p class="hero-role fade-up delay-2">
+      <span class="highlight">Java</span> · Spring Boot · APIs REST · MySQL
+    </p>
+    <p class="hero-desc fade-up delay-3">
+      Estudante de Análise e Desenvolvimento de Sistemas, especializado em backend com Java e Spring Boot. Construindo sistemas robustos com autenticação JWT, APIs documentadas e integrações reais.
+    </p>
+    <div class="hero-cta fade-up delay-4">
+      <a href="#projects" class="btn-primary">Ver projetos ↓</a>
+      <a href="#contact" class="btn-outline">Entre em contato</a>
+    </div>
+    <div class="hero-stats fade-up delay-4">
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Repositórios</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">JWT</div>
+        <div class="stat-label">Auth em prod</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Cobertura testes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2024</div>
+        <div class="stat-label">Em formação</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Stack técnica</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card java">
+      <div class="skill-icon">☕</div>
+      <div class="skill-name">Backend Java</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">Linguagem principal, com foco em desenvolvimento de sistemas robustos e escaláveis.</p>
+      <div class="skill-tags">
+        <span class="tag">Java 17+</span>
+        <span class="tag">POO</span>
+        <span class="tag">Collections</span>
+        <span class="tag">Lambdas</span>
+      </div>
+    </div>
+    <div class="skill-card spring">
+      <div class="skill-icon">🌱</div>
+      <div class="skill-name">Spring Ecosystem</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">Framework principal para criação de APIs REST e sistemas com autenticação segura.</p>
+      <div class="skill-tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Spring Security</span>
+        <span class="tag">JPA/Hibernate</span>
+        <span class="tag">Swagger</span>
+      </div>
+    </div>
+    <div class="skill-card db">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Banco de Dados</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">Modelagem e gerenciamento de dados relacionais com foco em performance.</p>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">JPA</span>
+        <span class="tag">Migrations</span>
+        <span class="tag">CRUD</span>
+      </div>
+    </div>
+    <div class="skill-card front">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Frontend</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">Interfaces responsivas e consumo de APIs REST no lado do cliente.</p>
+      <div class="skill-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Bootstrap</span>
+      </div>
+    </div>
+    <div class="skill-card tools">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Ferramentas & DevOps</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">Aprendendo boas práticas de versionamento, testes e containerização.</p>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Docker</span>
+        <span class="tag">JUnit 5</span>
+        <span class="tag">JWT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--bg2);">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Projetos</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Featured -->
+    <div class="project-card featured">
+      <div class="project-accent"></div>
+      <div class="project-body">
+        <div class="project-type">⭐ Projeto destaque</div>
+        <div class="project-name">Sistema de Agendamento Empresarial</div>
+        <div class="project-desc">
+          Sistema completo de agendamento com autenticação JWT, dashboard administrativo com métricas em tempo real e integração com WhatsApp API para notificações automáticas.
         </div>
-    </header>
-
-    <!-- Sobre Mim -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>Victor Menezes</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="img/perfil.jpeg" alt="Foto de Victor" class="profile-pic">
-                </div>
-                <div class="about-text">
-                    <p>Sou desenvolvedor iniciante, apaixonado por tecnologia e sempre buscando aprender novas habilidades. Meu objetivo é contribuir com soluções criativas para projetos desafiadores!</p>
-                </div>
-            </div>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/victor-menezes-9a39862b7/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/VictorcMenezes" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/victorcdmenezes/?utm_source=qr&igsh=MTVmNWxpMzl3M3ZtOQ%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
+        <div class="project-stack">
+          <span class="stack-tag">Java</span>
+          <span class="stack-tag">Spring Boot</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">JWT</span>
+          <span class="stack-tag">Bootstrap</span>
+          <span class="stack-tag">WhatsApp API</span>
         </div>
-    </section>
-
-    <!-- Projetos -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projetos</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                   
-                    <h3>Calculadora</h3>
-
-                    <p>Uma calculadora interativa feita com HTML, CSS e JavaScript.</p>
-                    <a href="https://673d2df5373e53aee27ad549--superb-cassata-6dd370.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
-                    <a href="https://github.com/VictorcMenezes/Calculadora" class="btn" target="_blank">Código no GitHub</a>
-                    <div class="image">
-                        <img src="img/calculadora.png" alt="Projeto 1">
-                    </div>
-                </div>
-                <div class="project-card">
-                    
-                    <h3>Sistema de Cadastro de Usuário</h3>
-                    <p>Um sistema de cadastro de usuários básicos de CRUD (Criar, Ler, Atualizar e Deletar)</p>
-                    <a href="https://unrivaled-pothos-d6e7a8.netlify.app" class="btn" target="_blank">Ver Projeto</a>
-                    <a href="https://github.com/VictorcMenezes/Sistema-Cadastro-Usuario" class="btn" target="_blank">Código no GitHub</a>
-                    <div class="image">
-                        <img src="img/cadastroUsuario.png" alt="Projeto 2">
-                    </div>
-                </div>
-               
-                <div class="project-card">
-                    
-                    <h3>Lista de Tarefas</h3>
-                    <p>Um projeto simples de Lista de Tarefas (To-Do List) feito com HTML, CSS e JavaScript.</p>
-                    <a href="https://673dc3df8bbc946c935195c8--fastidious-haupia-6b7527.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
-                    <a href="https://github.com/VictorcMenezes/To-Do-list-Completa" class="btn" target="_blank">Código no GitHub</a>
-                    <div class="image">
-                        <img src="img/minhasListaTarefas.png" alt="Projeto 3">
-                    </div>
-                
-                </div>
-                <div class="project-card">    
-                    <h3>Site Salão de Beleza</h3>
-                    <p>Site para uma cliente usando, CSS e JavaScript.</p>
-                    <a href="https://673e7eac8891d6aae508bde6--dulcet-kringle-f041c6.netlify.app/" class="btn" target="_blank">Ver Projeto</a>
-                    <a href="https://github.com/VictorcMenezes/SalaoBeleza-HTML-CSS/" class="btn" target="_blank">Código no GitHub</a>
-                    <div class="image">
-                        <img src="img/salaoBeleza.png" alt="Projeto 4">
-                    </div>
-                </div>
-               <!-- <div class="project-card">
-                    <h3>Calculadora</h3>
-                    <p>Uma calculadora interativa feita com HTML, CSS e JavaScript.</p>
-                    <a href="#" class="btn" target="_blank">Ver Projeto</a>
-                    <a href="#" class="btn" target="_blank">Código no GitHub</a>
-                </div>-->
-                <!-- Adicione mais projetos aqui -->
-            </div>
+        <div class="project-links">
+          <a href="https://github.com/VictorcMenezes/agendamento-sistema" class="link-btn">
+            <span>GitHub</span><span class="arrow">→</span>
+          </a>
         </div>
-    </section>
-
-    <!-- Habilidades -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2>Habilidades</h2>
-            <div class="skills-grid">
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <p>HTML</p>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt"></i>
-                    <p>CSS</p>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-js-square"></i>
-                    <p>JavaScript</p>
-                </div>
-                <!-- Adicione mais habilidades aqui -->
-            </div>
+      </div>
+      <div class="project-highlights">
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Autenticação JWT completa com roles e permissões</span>
         </div>
-    </section>
-
-    <!-- Contato -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contato</h2>
-            <form id="contact-form" action="https://formspree.io/f/xyzypjoa" method="POST">
-                <input type="text" name="name" placeholder="Seu Nome" required>
-                <input type="email" name="email" placeholder="Seu E-mail" required>
-                <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
-                <button type="submit" class="btn">Enviar</button>
-            </form>
-            
-            <div id="form-message" style="display:none;"></div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Dashboard com métricas em tempo real</span>
         </div>
-    </section>
-    
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Notificações automáticas via WhatsApp</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <span>Interface responsiva mobile-first</span>
+        </div>
+      </div>
+    </div>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>© 2024 Victor Costa. Todos os direitos reservados.</p>
-    </footer>
+    <!-- API REST -->
+    <div class="project-card">
+      <div class="project-accent"></div>
+      <div class="project-body">
+        <div class="project-type">Backend</div>
+        <div class="project-name">API REST de Gerenciamento</div>
+        <div class="project-desc">
+          API RESTful com 15+ endpoints documentados via Swagger, autenticação JWT, autorização granular e 85% de cobertura de testes com JUnit 5.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Spring Boot</span>
+          <span class="stack-tag">JPA/Hibernate</span>
+          <span class="stack-tag">Swagger</span>
+          <span class="stack-tag">JUnit 5</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/VictorcMenezes/api-gerenciamento" class="link-btn">
+            <span>GitHub</span><span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
-    <script src="scripts.js"></script>
+    <!-- Portal -->
+    <div class="project-card">
+      <div class="project-accent" style="background: var(--accent2);"></div>
+      <div class="project-body">
+        <div class="project-type" style="color: var(--accent2);">Frontend</div>
+        <div class="project-name">Portal de Clientes</div>
+        <div class="project-desc">
+          SPA responsiva com design mobile-first, consumo de APIs REST com tratamento de erros e score 95+ no Lighthouse.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag" style="border-color: rgba(34,211,238,0.3); color: var(--accent2);">HTML5</span>
+          <span class="stack-tag" style="border-color: rgba(34,211,238,0.3); color: var(--accent2);">CSS3</span>
+          <span class="stack-tag" style="border-color: rgba(34,211,238,0.3); color: var(--accent2);">JavaScript</span>
+          <span class="stack-tag" style="border-color: rgba(34,211,238,0.3); color: var(--accent2);">Bootstrap</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/VictorcMenezes/portal-clientes" class="link-btn">
+            <span>GitHub</span><span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Salão -->
+    <div class="project-card">
+      <div class="project-accent" style="background: var(--accent3);"></div>
+      <div class="project-body">
+        <div class="project-type" style="color: var(--accent3);">Projeto real</div>
+        <div class="project-name">Site Salão de Beleza</div>
+        <div class="project-desc">
+          Site desenvolvido para cliente real com design customizado, responsivo e moderno. Primeiro projeto com entrega profissional.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag" style="border-color: rgba(244,114,182,0.3); color: var(--accent3);">HTML</span>
+          <span class="stack-tag" style="border-color: rgba(244,114,182,0.3); color: var(--accent3);">CSS</span>
+          <span class="stack-tag" style="border-color: rgba(244,114,182,0.3); color: var(--accent3);">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/VictorcMenezes/SalaoBeleza-HTML-CSS/" class="link-btn">
+            <span>GitHub</span><span class="arrow">→</span>
+          </a>
+          <a href="https://673e7eac8891d6aae508bde6--dulcet-kringle-f041c6.netlify.app/" class="link-btn">
+            <span>Demo</span><span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sistema CRUD -->
+    <div class="project-card">
+      <div class="project-accent" style="background: #f59e0b;"></div>
+      <div class="project-body">
+        <div class="project-type" style="color: #f59e0b;">Full CRUD</div>
+        <div class="project-name">Sistema de Cadastro de Usuários</div>
+        <div class="project-desc">
+          Sistema completo com operações de Criar, Ler, Atualizar e Deletar registros. Fundação prática de sistemas de gestão.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">HTML</span>
+          <span class="stack-tag" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">CSS</span>
+          <span class="stack-tag" style="border-color: rgba(245,158,11,0.3); color: #f59e0b;">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/VictorcMenezes/Sistema-Cadastro-Usuario" class="link-btn">
+            <span>GitHub</span><span class="arrow">→</span>
+          </a>
+          <a href="https://unrivaled-pothos-d6e7a8.netlify.app" class="link-btn">
+            <span>Demo</span><span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Sobre mim</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Sou <strong>Victor Menezes</strong>, desenvolvedor em formação especializado em <strong>backend Java com Spring Boot</strong>. Apaixonado por construir sistemas que resolvem problemas reais — não apenas código que funciona, mas código bem estruturado.
+      </p>
+      <p>
+        Atualmente cursando <strong>Análise e Desenvolvimento de Sistemas</strong> e focado na transição de carreira para TI. Já desenvolvi sistemas com <strong>autenticação JWT</strong>, APIs REST documentadas com Swagger e integração com serviços externos como WhatsApp.
+      </p>
+      <p>
+        Estou aprendendo <strong>Docker, Spring Security e Testes Unitários</strong> para elevar ainda mais a qualidade dos meus projetos. Aberto a projetos colaborativos e oportunidades de crescimento profissional.
+      </p>
+      <div class="about-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Trabalhando em: <strong>Sistema de Agendamento com Spring Boot</strong></span>
+      </div>
+    </div>
+    <div class="journey">
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="journey-year">2024 — ATUAL</div>
+          <div class="journey-event">ADS — Análise e Desenvolvimento de Sistemas</div>
+          <div class="journey-detail">Formação técnica com foco em desenvolvimento de software</div>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="journey-year">2024</div>
+          <div class="journey-event">Especialização em Java & Spring Boot</div>
+          <div class="journey-detail">APIs REST, JWT, JPA/Hibernate, Swagger, JUnit 5</div>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="journey-year">2024</div>
+          <div class="journey-event">Primeiro projeto para cliente real</div>
+          <div class="journey-detail">Site de salão de beleza — entrega profissional completa</div>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="journey-year">2025 — FOCO</div>
+          <div class="journey-event">Docker, Spring Security, Testes</div>
+          <div class="journey-detail">Elevando a qualidade e profissionalismo dos projetos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--bg2);">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Contato</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Vamos trabalhar juntos?</h3>
+      <p>Estou disponível para oportunidades, projetos colaborativos e parcerias. Se você tem um projeto interessante ou uma vaga, fala comigo!</p>
+      <div class="contact-links">
+        <a href="mailto:victor.costa.menezes@gmail.com" class="contact-link">
+          <div class="contact-link-icon">@</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">victor.costa.menezes@gmail.com</div>
+          </div>
+          <span style="color: var(--muted);">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/victor-menezes-9a39862b7" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">victor-menezes-9a39862b7</div>
+          </div>
+          <span style="color: var(--muted);">→</span>
+        </a>
+        <a href="https://github.com/VictorcMenezes" class="contact-link">
+          <div class="contact-link-icon" style="font-size: 16px;">gh</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">VictorcMenezes</div>
+          </div>
+          <span style="color: var(--muted);">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <p>// disponível para oportunidades</p>
+      <div class="email">victor.costa.menezes<br>@gmail.com</div>
+      <a href="mailto:victor.costa.menezes@gmail.com" class="btn-primary" style="display: inline-flex;">Enviar email →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Victor Menezes</span> — Todos os direitos reservados</p>
+  <p style="font-family: var(--mono); font-size: 11px;">Feito com <span>♥</span> em Recife, PE</p>
+</footer>
+
 </body>
 </html>
